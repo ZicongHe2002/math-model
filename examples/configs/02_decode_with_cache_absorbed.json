@@ -1,0 +1,157 @@
+{
+  "_comment": "ILLUSTRATIVE decode step: Sq=1, cache capacity 4096 but only 1500 keys active, offset = 1499; absorbed path; KV capacity != consumed keys; scheduled_lengths declares that the kernel scans a 2048-key window (padding keys masked), separate from active 1500 and capacity 4096",
+  "algorithm": "absorbed_two_step",
+  "tensors": {
+    "q_latent": {
+      "shape": [
+        3,
+        1,
+        24
+      ],
+      "dtype": "bfloat16"
+    },
+    "kv_latent": {
+      "shape": [
+        3,
+        4096,
+        64
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_q_nope": {
+      "shape": [
+        8,
+        24,
+        32
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_k_nope": {
+      "shape": [
+        8,
+        64,
+        32
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_v": {
+      "shape": [
+        8,
+        64,
+        32
+      ],
+      "dtype": "bfloat16"
+    },
+    "q_pe": {
+      "shape": [
+        3,
+        8,
+        1,
+        16
+      ],
+      "dtype": "bfloat16"
+    },
+    "k_pe": {
+      "shape": [
+        3,
+        4096,
+        16
+      ],
+      "dtype": "bfloat16"
+    }
+  },
+  "semantics": {
+    "mask": "causal",
+    "position_offset": 1499,
+    "active_lengths": {
+      "Sq": 1,
+      "Sk": 1500
+    },
+    "scale_policy": "standard",
+    "outputs": [
+      "O"
+    ],
+    "projection_scope": "full",
+    "empty_row_policy": "error"
+  },
+  "implementation": {
+    "name": "decode_bk256",
+    "b_q": 1,
+    "b_k": 256,
+    "rect_policy": "skip_future",
+    "executed_extent_policy": "padded_to_tile",
+    "kv_buffers": 2,
+    "heads_per_program": 8,
+    "score_alias_exp": true,
+    "exp_alias_p_operand": true,
+    "both_qk_branches_live": false,
+    "scratch_bytes": 0,
+    "materialize": {
+      "q_tilde": false,
+      "z": false
+    },
+    "overlap_model": "full_overlap_max",
+    "scheduled_lengths": {
+      "Sq": 1,
+      "Sk": 2048
+    }
+  },
+  "numerics": {
+    "matmul_input_dtype": "bfloat16",
+    "accumulator_dtype": "float32",
+    "score_dtype": "float32",
+    "exp_dtype": "float32",
+    "p_operand_dtype": "bfloat16",
+    "state_dtype": "float32",
+    "output_dtype": "bfloat16",
+    "lse_dtype": "float32",
+    "exp_base": "e",
+    "recurrence": "unnormalized"
+  },
+  "candidates": [
+    {
+      "name": "decode_bk512",
+      "b_q": 1,
+      "b_k": 512,
+      "rect_policy": "skip_future",
+      "executed_extent_policy": "padded_to_tile",
+      "kv_buffers": 2,
+      "heads_per_program": 8,
+      "score_alias_exp": true,
+      "exp_alias_p_operand": true,
+      "both_qk_branches_live": false,
+      "scratch_bytes": 0,
+      "materialize": {
+        "q_tilde": false,
+        "z": false
+      },
+      "overlap_model": "full_overlap_max",
+      "scheduled_lengths": {
+        "Sq": 1,
+        "Sk": 2048
+      }
+    },
+    {
+      "name": "decode_bk256_h1",
+      "b_q": 1,
+      "b_k": 256,
+      "rect_policy": "skip_future",
+      "executed_extent_policy": "padded_to_tile",
+      "kv_buffers": 2,
+      "heads_per_program": 1,
+      "score_alias_exp": true,
+      "exp_alias_p_operand": true,
+      "both_qk_branches_live": false,
+      "scratch_bytes": 0,
+      "materialize": {
+        "q_tilde": false,
+        "z": false
+      },
+      "overlap_model": "full_overlap_max",
+      "scheduled_lengths": {
+        "Sq": 1,
+        "Sk": 2048
+      }
+    }
+  ]
+}

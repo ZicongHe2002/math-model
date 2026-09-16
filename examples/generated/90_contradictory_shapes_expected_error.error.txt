@@ -1,0 +1,3 @@
+BindingError: contradictory shapes across the seven inputs:
+  - B: tensor.q_latent.axis[B]=2 but tensor.k_pe.axis[B]=3
+  - H: tensor.w_q_nope.axis[H]=4 but tensor.w_k_nope.axis[H]=5

@@ -1,0 +1,27 @@
+{
+  "name": "tpu-v6e (ILLUSTRATIVE profile; public figures entered by hand, not verified in this session)",
+  "scope_default": "per_chip",
+  "provenance": "Public Google Cloud TPU v6e product documentation figures typed manually on 2026-09-08 without network access; treat every value as unverified until re-sourced. Vector tile 8x128 for 32-bit from the Pallas TPU docs [S6]. Register/VPU throughputs deliberately left null.",
+  "retrieved": "2026-09-08 (manual, unverified)",
+  "toolchain": {"compiler": "unspecified", "version": null},
+  "compute": {
+    "mxu": {"peak_flops": {"bfloat16": {"value": 9.18e14, "unit": "FLOP/s", "scope": "per_chip", "precision": "bfloat16", "source": "public v6e datasheet figure (918 TFLOP/s bf16), unverified", "confidence": "datasheet"}}},
+    "vpu": {"exp_throughput": {"value": null, "unit": "op/s", "scope": "per_chip", "source": "not published; requires calibration"},
+            "elementwise_throughput": {"value": null, "unit": "op/s", "scope": "per_chip", "source": "not published; requires calibration"},
+            "reduction_throughput": {"value": null, "unit": "op/s", "scope": "per_chip", "source": "not published; requires calibration"}}
+  },
+  "memory": {
+    "hbm": {"capacity_bytes": {"value": 34359738368, "unit": "byte", "scope": "per_chip", "source": "public v6e figure (32 GiB), unverified"}},
+    "vmem": {"capacity_bytes": {"value": null, "unit": "byte", "scope": "per_tensorcore", "source": "read from TpuInfo at runtime or documentation; not filled here"},
+             "scoped_budget_bytes": {"value": null, "unit": "byte", "scope": "per_tensorcore", "source": "compiler-dependent"}},
+    "vreg": {"count": {"value": null, "unit": "count", "scope": "per_tensorcore", "source": "not filled"},
+             "bytes_per_vreg": {"value": null, "unit": "byte", "scope": "per_tensorcore", "source": "not filled"},
+             "usable_capacity_bytes": {"value": null, "unit": "byte", "scope": "per_tensorcore", "source": "unknown: requires compiler evidence"}}
+  },
+  "paths": {
+    "hbm_to_vmem": {"bandwidth": {"value": 1.64e12, "unit": "byte/s", "scope": "per_chip", "source": "public v6e HBM bandwidth figure (1640 GB/s), unverified", "confidence": "datasheet"}},
+    "vmem_to_vreg": {"bandwidth": {"value": null, "unit": "byte/s", "scope": "per_tensorcore", "source": "not published"}}
+  },
+  "layout": {"float32": [8, 128]},
+  "calibration": []
+}

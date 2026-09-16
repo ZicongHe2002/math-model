@@ -1,0 +1,29 @@
+{
+  "name": "template-device (illustrative; every value must be replaced with a sourced figure)",
+  "scope_default": "per_chip",
+  "provenance": "TEMPLATE — no real device; values are null so nothing is silently assumed",
+  "retrieved": null,
+  "toolchain": {"compiler": null, "version": null},
+  "compute": {
+    "mxu": {"peak_flops": {"bfloat16": {"value": null, "unit": "FLOP/s", "scope": "per_chip", "precision": "bfloat16", "source": null},
+                            "float32": {"value": null, "unit": "FLOP/s", "scope": "per_chip", "precision": "float32", "source": null}}},
+    "vpu": {"exp_throughput": {"value": null, "unit": "op/s", "scope": "per_chip", "source": null},
+            "elementwise_throughput": {"value": null, "unit": "op/s", "scope": "per_chip", "source": null},
+            "reduction_throughput": {"value": null, "unit": "op/s", "scope": "per_chip", "source": null}},
+    "launch_overhead_s": {"value": null, "unit": "s", "scope": "per_chip", "source": null}
+  },
+  "memory": {
+    "hbm": {"capacity_bytes": {"value": null, "unit": "byte", "scope": "per_chip", "source": null}},
+    "vmem": {"capacity_bytes": {"value": null, "unit": "byte", "scope": "per_tensorcore", "source": null},
+             "scoped_budget_bytes": {"value": null, "unit": "byte", "scope": "per_tensorcore", "source": "compiler scoped allocation budget (not nominal capacity)"}},
+    "vreg": {"count": {"value": null, "unit": "count", "scope": "per_tensorcore", "source": null},
+             "bytes_per_vreg": {"value": null, "unit": "byte", "scope": "per_tensorcore", "source": null},
+             "usable_capacity_bytes": {"value": null, "unit": "byte", "scope": "per_tensorcore", "source": "usable register-tile capacity, NOT total register file"}}
+  },
+  "paths": {
+    "hbm_to_vmem": {"bandwidth": {"value": null, "unit": "byte/s", "scope": "per_chip", "source": null}},
+    "vmem_to_vreg": {"bandwidth": {"value": null, "unit": "byte/s", "scope": "per_tensorcore", "source": null}}
+  },
+  "layout": {"float32": null, "bfloat16": null},
+  "calibration": []
+}

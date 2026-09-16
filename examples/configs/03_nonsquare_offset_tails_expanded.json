@@ -1,0 +1,111 @@
+{
+  "_comment": "ILLUSTRATIVE non-square task with negative offset, non-divisible tiles (tails), float32 storage, Dn != Dv",
+  "algorithm": "expanded",
+  "tensors": {
+    "q_latent": {
+      "shape": [
+        1,
+        37,
+        12
+      ],
+      "dtype": "float32"
+    },
+    "kv_latent": {
+      "shape": [
+        1,
+        53,
+        20
+      ],
+      "dtype": "float32"
+    },
+    "w_q_nope": {
+      "shape": [
+        3,
+        12,
+        16
+      ],
+      "dtype": "float32"
+    },
+    "w_k_nope": {
+      "shape": [
+        3,
+        20,
+        16
+      ],
+      "dtype": "float32"
+    },
+    "w_v": {
+      "shape": [
+        3,
+        20,
+        28
+      ],
+      "dtype": "float32"
+    },
+    "q_pe": {
+      "shape": [
+        1,
+        3,
+        37,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "k_pe": {
+      "shape": [
+        1,
+        53,
+        4
+      ],
+      "dtype": "float32"
+    }
+  },
+  "semantics": {
+    "mask": "causal",
+    "position_offset": -5,
+    "scale_policy": "declared",
+    "scale_value": 0.125,
+    "outputs": [
+      "O",
+      "LSE"
+    ],
+    "lse_convention": "natural_log",
+    "projection_scope": "full",
+    "empty_row_policy": "zero_output_neg_inf_lse",
+    "active_lengths": {
+      "Sq": 37,
+      "Sk": 53
+    }
+  },
+  "implementation": {
+    "name": "bq8_bk16_padded",
+    "b_q": 8,
+    "b_k": 16,
+    "rect_policy": "skip_future",
+    "executed_extent_policy": "padded_to_tile",
+    "kv_buffers": 2,
+    "heads_per_program": 1,
+    "score_alias_exp": false,
+    "exp_alias_p_operand": false,
+    "both_qk_branches_live": true,
+    "scratch_bytes": 0,
+    "projection_in_kv_loop": false,
+    "materialize": {
+      "expanded_kv": false,
+      "q_nope": false
+    },
+    "overlap_model": "full_overlap_max"
+  },
+  "numerics": {
+    "matmul_input_dtype": "float32",
+    "accumulator_dtype": "float32",
+    "score_dtype": "float32",
+    "exp_dtype": "float32",
+    "p_operand_dtype": "float32",
+    "state_dtype": "float32",
+    "output_dtype": "float32",
+    "lse_dtype": "float32",
+    "exp_base": "2",
+    "recurrence": "normalized"
+  }
+}

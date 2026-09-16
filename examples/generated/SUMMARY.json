@@ -1,0 +1,119 @@
+[
+  {
+    "config": "01_square_causal_prefill_expanded",
+    "status": "ok",
+    "mode": "bound",
+    "fingerprint": "55fd2c864359ee4e",
+    "conflicts": [],
+    "n_unknown_fields": 58,
+    "F_total_useful": 3829760,
+    "C_valid": 16640,
+    "pareto_set": [
+      "bq32_bk16",
+      "bq16_bk16_h4"
+    ]
+  },
+  {
+    "config": "02_decode_with_cache_absorbed",
+    "status": "ok",
+    "mode": "bound",
+    "fingerprint": "8de4242090fd5e82",
+    "conflicts": [
+      "the PV operand is declared to alias E, but the two carry different dtypes; one storage cannot hold both. Declare equal dtypes, or exp_alias_p_operand = False with an explicit cast"
+    ],
+    "n_unknown_fields": 52,
+    "F_total_useful": 10601472,
+    "C_valid": 36000,
+    "pareto_set": [
+      "decode_bk256"
+    ]
+  },
+  {
+    "config": "03_nonsquare_offset_tails_expanded",
+    "status": "ok",
+    "mode": "bound",
+    "fingerprint": "fd78e241ae1f334c",
+    "conflicts": [],
+    "n_unknown_fields": 59,
+    "F_total_useful": 474528,
+    "C_valid": 1584
+  },
+  {
+    "config": "04_no_rope_branch_symbolic_tiles",
+    "status": "ok",
+    "mode": "bound",
+    "fingerprint": "c8bd7a0f97cdf2fc",
+    "conflicts": [],
+    "n_unknown_fields": 89,
+    "F_total_useful": 19398656,
+    "C_valid": 131072
+  },
+  {
+    "config": "05_ragged_batch_absorbed",
+    "status": "ok",
+    "mode": "bound",
+    "fingerprint": "4c8a371c71a6b4a3",
+    "conflicts": [],
+    "n_unknown_fields": 54,
+    "F_total_useful": 3466944,
+    "C_valid": 16076
+  },
+  {
+    "config": "06_calibrated_synthetic_expanded",
+    "status": "ok",
+    "mode": "calibrated",
+    "fingerprint": "f257b3dc6072875a",
+    "conflicts": [],
+    "n_unknown_fields": 56,
+    "F_total_useful": 596508672,
+    "C_valid": 2101248,
+    "pareto_set": [
+      "bq64_bk128",
+      "bq128_bk64"
+    ]
+  },
+  {
+    "config": "07_transposed_axes_new_tokens_only",
+    "status": "ok",
+    "mode": "bound",
+    "fingerprint": "5eb6914333a49524",
+    "conflicts": [],
+    "n_unknown_fields": 59,
+    "F_total_useful": 11467776,
+    "C_valid": 60000
+  },
+  {
+    "config": "08_tpu_v6e_illustrative_profile_expanded",
+    "status": "ok",
+    "mode": "bound",
+    "fingerprint": "55fd2c864359ee4e",
+    "conflicts": [],
+    "n_unknown_fields": 57,
+    "F_total_useful": 3829760,
+    "C_valid": 16640
+  },
+  {
+    "config": "90_contradictory_shapes_expected_error",
+    "status": "explicit_error",
+    "error": "BindingError: contradictory shapes across the seven inputs:",
+    "expected": true
+  },
+  {
+    "config": "91_packed_dtype_expected_error",
+    "status": "explicit_error",
+    "error": "CapabilityError: dtype 'int4' is a 4-bit packed type; the seven-input adapter has no packing model. Supply an explicit packing model (bytes per packed group, scale/zero-point tensors) or a dtype overr",
+    "expected": true
+  },
+  {
+    "config": "92_scale_conflict_reported",
+    "status": "ok",
+    "mode": "bound",
+    "fingerprint": "3fca732b02c05cc3",
+    "conflicts": [
+      "declared scale_value differs from the standard policy value (D_n + D_r)^(-1/2); the declared value takes precedence (prompt 3) and the conflict is reported, neither source is overwritten"
+    ],
+    "n_unknown_fields": 78,
+    "F_total_useful": 9024,
+    "C_valid": 72
+  }
+]

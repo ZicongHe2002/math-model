@@ -1,0 +1,154 @@
+{
+  "_comment": "ILLUSTRATIVE run in calibrated mode with a SYNTHETIC hardware profile (numbers are not from any device); also declares a register budget so the feasible region is evaluated",
+  "algorithm": "expanded",
+  "tensors": {
+    "q_latent": {
+      "shape": [
+        2,
+        512,
+        32
+      ],
+      "dtype": "bfloat16"
+    },
+    "kv_latent": {
+      "shape": [
+        2,
+        512,
+        64
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_q_nope": {
+      "shape": [
+        8,
+        32,
+        48
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_k_nope": {
+      "shape": [
+        8,
+        64,
+        48
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_v": {
+      "shape": [
+        8,
+        64,
+        48
+      ],
+      "dtype": "bfloat16"
+    },
+    "q_pe": {
+      "shape": [
+        2,
+        8,
+        512,
+        16
+      ],
+      "dtype": "bfloat16"
+    },
+    "k_pe": {
+      "shape": [
+        2,
+        512,
+        16
+      ],
+      "dtype": "bfloat16"
+    }
+  },
+  "semantics": {
+    "mask": "causal",
+    "position_offset": 0,
+    "scale_policy": "standard",
+    "outputs": [
+      "O",
+      "LSE"
+    ],
+    "lse_convention": "natural_log",
+    "projection_scope": "full",
+    "empty_row_policy": "error",
+    "active_lengths": {
+      "Sq": 512,
+      "Sk": 512
+    }
+  },
+  "implementation": {
+    "name": "bq128_bk128",
+    "b_q": 128,
+    "b_k": 128,
+    "rect_policy": "skip_future",
+    "executed_extent_policy": "padded_to_tile",
+    "kv_buffers": 2,
+    "heads_per_program": 1,
+    "score_alias_exp": true,
+    "exp_alias_p_operand": false,
+    "vreg_budget_bytes": 65536,
+    "overlap_model": "full_overlap_max",
+    "both_qk_branches_live": false,
+    "scratch_bytes": 0,
+    "projection_in_kv_loop": false,
+    "materialize": {
+      "expanded_kv": false,
+      "q_nope": false
+    }
+  },
+  "numerics": {
+    "matmul_input_dtype": "bfloat16",
+    "accumulator_dtype": "float32",
+    "score_dtype": "float32",
+    "exp_dtype": "float32",
+    "p_operand_dtype": "bfloat16",
+    "state_dtype": "float32",
+    "output_dtype": "bfloat16",
+    "lse_dtype": "float32",
+    "exp_base": "e",
+    "recurrence": "unnormalized"
+  },
+  "hardware_file": "examples/hardware/synthetic_calibrated_profile.json",
+  "candidates": [
+    {
+      "name": "bq64_bk128",
+      "b_q": 64,
+      "b_k": 128,
+      "rect_policy": "skip_future",
+      "executed_extent_policy": "padded_to_tile",
+      "kv_buffers": 2,
+      "heads_per_program": 1,
+      "score_alias_exp": true,
+      "exp_alias_p_operand": false,
+      "vreg_budget_bytes": 65536,
+      "both_qk_branches_live": false,
+      "scratch_bytes": 0,
+      "projection_in_kv_loop": false,
+      "materialize": {
+        "expanded_kv": false,
+        "q_nope": false
+      },
+      "overlap_model": "full_overlap_max"
+    },
+    {
+      "name": "bq128_bk64",
+      "b_q": 128,
+      "b_k": 64,
+      "rect_policy": "skip_future",
+      "executed_extent_policy": "padded_to_tile",
+      "kv_buffers": 2,
+      "heads_per_program": 1,
+      "score_alias_exp": true,
+      "exp_alias_p_operand": false,
+      "vreg_budget_bytes": 65536,
+      "both_qk_branches_live": false,
+      "scratch_bytes": 0,
+      "projection_in_kv_loop": false,
+      "materialize": {
+        "expanded_kv": false,
+        "q_nope": false
+      },
+      "overlap_model": "full_overlap_max"
+    }
+  ]
+}

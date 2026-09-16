@@ -1,0 +1,97 @@
+{
+  "name": "tpu-v6e",
+  "scope_default": "per_chip",
+  "provenance": "Bundled single-chip TPU v6e (Trillium) profile verified against Google Cloud and JAX official documentation on 2026-09-15. All values use FLOP/s, byte/s, byte, or count. This profile contains published hardware specifications, not measured kernel calibration.",
+  "retrieved": "2026-09-15",
+  "toolchain": {},
+  "compute": {
+    "tensorcore": {
+      "count": {
+        "value": 1,
+        "unit": "count",
+        "scope": "per_chip",
+        "source": "https://docs.cloud.google.com/tpu/docs/v6e#system_architecture (retrieved 2026-09-15)",
+        "confidence": "datasheet"
+      }
+    },
+    "mxu": {
+      "count": {
+        "value": 2,
+        "unit": "count",
+        "scope": "per_chip",
+        "source": "https://docs.cloud.google.com/tpu/docs/v6e#system_architecture (retrieved 2026-09-15); 2 MXUs per TensorCore, 1 TensorCore per chip",
+        "confidence": "datasheet"
+      },
+      "peak_flops": {
+        "bfloat16": {
+          "value": 918000000000000,
+          "unit": "FLOP/s",
+          "scope": "per_chip",
+          "precision": "bfloat16",
+          "source": "https://docs.cloud.google.com/tpu/docs/v6e#system_architecture (retrieved 2026-09-15); 918 TFLOP/s converted with 10^12 FLOP/TFLOP",
+          "confidence": "datasheet"
+        }
+      }
+    },
+    "vpu": {
+      "exp_throughput": {"value": null, "unit": "op/s", "scope": "per_chip", "source": "No applicable throughput calibration supplied"},
+      "elementwise_throughput": {"value": null, "unit": "op/s", "scope": "per_chip", "source": "No applicable throughput calibration supplied"},
+      "reduction_throughput": {"value": null, "unit": "op/s", "scope": "per_chip", "source": "No applicable throughput calibration supplied"},
+      "layout_throughput": {"value": null, "unit": "op/s", "scope": "per_chip", "source": "No applicable throughput calibration supplied"}
+    },
+    "launch_overhead_s": {"value": null, "unit": "s", "scope": "per_chip", "source": "Requires measurement for the actual runtime and workload"},
+    "model_error_s": {"value": null, "unit": "s", "scope": "per_chip", "source": "Requires validation of an applicable prediction model"}
+  },
+  "memory": {
+    "hbm": {
+      "capacity_bytes": {
+        "value": 34359738368,
+        "unit": "byte",
+        "scope": "per_chip",
+        "source": "https://docs.cloud.google.com/compute/docs/tpus/tpu-machines (retrieved 2026-09-15); comparison table and ct6e-standard-1t both specify 32 GiB HBM, converted as 32 * 2^30 bytes",
+        "confidence": "datasheet"
+      }
+    },
+    "vmem": {
+      "capacity_bytes": {
+        "value": 134217728,
+        "unit": "byte",
+        "scope": "per_chip",
+        "source": "https://docs.jax.dev/en/latest/pallas/tpu/hardware.html (retrieved 2026-09-15); V6E has 128 MiB per TensorCore and 1 TensorCore per chip, converted as 128 * 2^20 bytes",
+        "confidence": "datasheet"
+      },
+      "scoped_budget_bytes": {"value": null, "unit": "byte", "scope": "per_chip", "source": "Compiler allocation budget for this kernel is undeclared; physical VMEM capacity is not substituted"}
+    },
+    "vreg": {
+      "count": {"value": null, "unit": "count", "scope": "per_chip", "source": "No register-allocation evidence supplied"},
+      "usable_capacity_bytes": {"value": null, "unit": "byte", "scope": "per_chip", "source": "Requires compiler evidence for the usable register budget of this kernel"}
+    }
+  },
+  "paths": {
+    "hbm_to_vmem": {
+      "bandwidth": {
+        "value": 1638000000000,
+        "unit": "byte/s",
+        "scope": "per_chip",
+        "source": "https://docs.cloud.google.com/tpu/docs/v6e#system_architecture (retrieved 2026-09-15); 1638 GB/s converted with 10^9 bytes/GB; the chip HBM limit is used only as an upper bound on reads",
+        "confidence": "datasheet"
+      }
+    },
+    "vmem_to_hbm": {"bandwidth": {"value": null, "unit": "byte/s", "scope": "per_chip", "source": "Independent write bandwidth is not established by the shared HBM specification"}},
+    "vmem_to_vreg": {"bandwidth": {"value": null, "unit": "byte/s", "scope": "per_chip", "source": "No applicable VMEM/register transfer calibration supplied"}},
+    "vreg_to_vmem": {"bandwidth": {"value": null, "unit": "byte/s", "scope": "per_chip", "source": "No applicable VMEM/register transfer calibration supplied"}}
+  },
+  "layout": {
+    "float32": [8, 128]
+  },
+  "calibration": [],
+  "notes": [
+    "This profile represents one physical chip. v6e has one TensorCore per chip, so its per-TensorCore VMEM capacity is equal to the per-chip capacity recorded here. The BF16 peak already includes both MXUs and is not multiplied by the MXU count.",
+    "HBM capacity uses the explicit GiB unit in https://docs.cloud.google.com/compute/docs/tpus/tpu-machines, resolving the shorter GB label in the v6e overview.",
+    "Compute and HBM bandwidth use Google Cloud's 918 TFLOP/s and 1638 GB/s figures. The JAX hardware summary rounds these to 920 TFLOP/s and 1640 GB/s; those rounded figures are not substituted.",
+    "HBM bandwidth is shared. Only a per-path read upper bound is supplied; simultaneous read/write service and a combined shared-bus bound are not modeled. The write-path bandwidth remains unknown, rather than declaring two independent full-bandwidth channels.",
+    "Physical HBM/VMEM capacities do not establish a compiler scoped VMEM budget or usable VREG budget. Those budgets remain unknown until declared for the kernel.",
+    "The float32 layout tile [8, 128] comes from https://docs.jax.dev/en/latest/pallas/tpu/details.html#array-layouts (retrieved 2026-09-15). It is the ordinary 32-bit vector tiling scenario; other dtypes and compact or replicated layouts require their own declarations.",
+    "Device specifications supply conditional resource lower bounds. No measured efficiency, launch cost, validation error, or actual kernel latency is supplied by this profile. Loading the bundled profile performs no network or JAX runtime calls."
+  ]
+}

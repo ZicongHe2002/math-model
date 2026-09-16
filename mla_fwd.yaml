@@ -1,0 +1,24 @@
+name: mla_fwd
+kernel: mla_fwd
+shape:
+  batch: 1
+  num_heads: 32
+  seq_len: 4096
+  q_latent_dim: 1536
+  kv_latent_dim: 512
+  qk_nope_head_dim: 128
+  qk_rope_head_dim: 64
+  value_head_dim: 128
+dtype: bfloat16
+seed: 0
+tiling:
+  block_b: 1
+  block_q: 512
+  block_kv: 512
+  block_rq: 256
+  block_rkv: 128
+devices:
+  num_devices: 1
+tolerance:
+  atol: 1.0e-2
+  rtol: 1.0e-2

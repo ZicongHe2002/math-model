@@ -1,0 +1,59 @@
+{
+  "_comment": "ILLUSTRATIVE Dr = 0 (no positional branch), no tiles and no hardware: partial analysis expected; active_lengths deliberately undeclared -> capacity-execution scenario with partial statuses",
+  "algorithm": "expanded",
+  "tensors": {
+    "q_latent": {
+      "shape": [
+        4,
+        128,
+        8
+      ],
+      "dtype": "bfloat16"
+    },
+    "kv_latent": {
+      "shape": [
+        4,
+        128,
+        16
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_q_nope": {
+      "shape": [
+        2,
+        8,
+        32
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_k_nope": {
+      "shape": [
+        2,
+        16,
+        32
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_v": {
+      "shape": [
+        2,
+        16,
+        32
+      ],
+      "dtype": "bfloat16"
+    }
+  },
+  "semantics": {
+    "mask": "none",
+    "scale_policy": "standard",
+    "outputs": [
+      "O"
+    ],
+    "projection_scope": "full"
+  },
+  "implementation": null,
+  "numerics": {
+    "matmul_input_dtype": "bfloat16",
+    "accumulator_dtype": "float32"
+  }
+}

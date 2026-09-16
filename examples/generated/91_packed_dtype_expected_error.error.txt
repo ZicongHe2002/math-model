@@ -1,0 +1,1 @@
+CapabilityError: dtype 'int4' is a 4-bit packed type; the seven-input adapter has no packing model. Supply an explicit packing model (bytes per packed group, scale/zero-point tensors) or a dtype override.

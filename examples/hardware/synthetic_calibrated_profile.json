@@ -1,0 +1,21 @@
+{
+  "name": "synthetic-calibrated-device (SYNTHETIC FIXTURE for exercising calibrated mode; not a real device)",
+  "scope_default": "per_chip",
+  "provenance": "Synthetic numbers chosen to exercise the calibrated-mode code path. Not measured anywhere.",
+  "toolchain": {"compiler": "synthetic", "version": "0"},
+  "compute": {
+    "mxu": {"peak_flops": {"bfloat16": {"value": 1.0e14, "unit": "FLOP/s", "scope": "per_chip", "precision": "bfloat16", "source": "synthetic"}}},
+    "vpu": {"exp_throughput": {"value": 2.0e11, "unit": "op/s", "scope": "per_chip", "source": "synthetic"},
+            "elementwise_throughput": {"value": 1.0e12, "unit": "op/s", "scope": "per_chip", "source": "synthetic"},
+            "reduction_throughput": {"value": 5.0e11, "unit": "op/s", "scope": "per_chip", "source": "synthetic"}},
+    "launch_overhead_s": {"value": 5.0e-6, "unit": "s", "scope": "per_chip", "source": "synthetic"}
+  },
+  "memory": {"vreg": {"usable_capacity_bytes": {"value": 65536, "unit": "byte", "scope": "per_chip", "source": "synthetic"}}},
+  "paths": {"hbm_to_vmem": {"bandwidth": {"value": 8.0e11, "unit": "byte/s", "scope": "per_chip", "source": "synthetic"}},
+            "vmem_to_vreg": {"bandwidth": {"value": 4.0e12, "unit": "byte/s", "scope": "per_chip", "source": "synthetic"}}},
+  "layout": {"float32": [8, 128], "bfloat16": [16, 128]},
+  "calibration": [
+    {"node_kind": "matmul", "dtype": "bfloat16", "epsilon_low": 0.35, "epsilon_high": 0.7, "startup_s": 2.0e-7,
+     "source": "synthetic bucket", "device": "synthetic", "validated_on_unseen_shapes": false}
+  ]
+}

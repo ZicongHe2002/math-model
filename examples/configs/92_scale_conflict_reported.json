@@ -1,0 +1,90 @@
+{
+  "_comment": "CONFLICT REPORTED: scale_policy standard but a different scale_value declared",
+  "algorithm": "expanded",
+  "tensors": {
+    "q_latent": {
+      "shape": [
+        1,
+        8,
+        8
+      ],
+      "dtype": "bfloat16"
+    },
+    "kv_latent": {
+      "shape": [
+        1,
+        8,
+        8
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_q_nope": {
+      "shape": [
+        2,
+        8,
+        8
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_k_nope": {
+      "shape": [
+        2,
+        8,
+        8
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_v": {
+      "shape": [
+        2,
+        8,
+        8
+      ],
+      "dtype": "bfloat16"
+    },
+    "q_pe": {
+      "shape": [
+        1,
+        2,
+        8,
+        4
+      ],
+      "dtype": "bfloat16"
+    },
+    "k_pe": {
+      "shape": [
+        1,
+        8,
+        4
+      ],
+      "dtype": "bfloat16"
+    }
+  },
+  "semantics": {
+    "mask": "causal",
+    "position_offset": 0,
+    "scale_policy": "standard",
+    "scale_value": 0.5,
+    "outputs": [
+      "O"
+    ],
+    "active_lengths": {
+      "Sq": 8,
+      "Sk": 8
+    }
+  },
+  "implementation": {
+    "b_q": 4,
+    "b_k": 4,
+    "rect_policy": "skip_future",
+    "executed_extent_policy": "logical",
+    "both_qk_branches_live": false,
+    "scratch_bytes": 0,
+    "projection_in_kv_loop": false,
+    "materialize": {
+      "expanded_kv": false,
+      "q_nope": false
+    },
+    "overlap_model": "full_overlap_max"
+  }
+}

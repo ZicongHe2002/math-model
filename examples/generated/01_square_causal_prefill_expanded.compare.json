@@ -1,0 +1,1434 @@
+{
+  "task_fingerprint": "55fd2c864359ee4e",
+  "algorithm": "expanded",
+  "rows": [
+    {
+      "name": "bq16_bk16",
+      "role": "baseline",
+      "algorithm": "expanded",
+      "strategy": {
+        "name": "bq16_bk16",
+        "b_q": 16,
+        "b_k": 16,
+        "b_rq": null,
+        "b_rk": null,
+        "scheduled_lengths": null,
+        "rect_policy": "skip_future",
+        "subdivide": null,
+        "executed_extent_policy": "logical",
+        "schedule": "q_outer_kv_inner",
+        "kv_buffers": 2,
+        "heads_per_program": 1,
+        "q_resident": null,
+        "projection_in_kv_loop": false,
+        "v_load": null,
+        "score_alias_exp": true,
+        "exp_alias_p_operand": false,
+        "both_qk_branches_live": false,
+        "materialize": {
+          "expanded_kv": false,
+          "q_nope": false
+        },
+        "layout": {},
+        "scratch_bytes": 0,
+        "vmem_budget_bytes": null,
+        "vreg_budget_bytes": null,
+        "overlap_model": "full_overlap_max",
+        "serial_stage_groups": null,
+        "notes": []
+      },
+      "values": {
+        "F_total[useful]": 3829760,
+        "F_total[executed_graph]": 6619136,
+        "F_A_minus_F_E": 532480,
+        "C_rect": 20480,
+        "C_pad": 20480,
+        "rect_waste": 3840,
+        "B[hbm_to_vmem]": 249856,
+        "B[vmem_to_hbm]": 26624,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 1024,
+        "local[accumulator_A]": 1536,
+        "local[v_tile]": 768,
+        "M_live[vreg:softmax]": 2752,
+        "M_live[vmem:softmax]": 1792,
+        "M_peak[all]": 9344,
+        "n_programs": 32,
+        "n_kv_block_visits": 80,
+        "V_lifetime_stages": 4,
+        "W_resource[exp]": 21760,
+        "W_resource[reduce]": 39680,
+        "b_k_max[vreg:binding_stage]": null,
+        "T_LB[mxu]": null,
+        "T_LB[path:hbm_to_vmem]": null,
+        "T_LB[combined]": null,
+        "T_pred[node_interval]": null
+      },
+      "statuses": {
+        "F_total[useful]": "bound",
+        "F_total[executed_graph]": "partial",
+        "F_A_minus_F_E": "bound",
+        "C_rect": "partial",
+        "C_pad": "partial",
+        "rect_waste": "partial",
+        "B[hbm_to_vmem]": "partial",
+        "B[vmem_to_hbm]": "partial",
+        "HBM_mat[K^n,V]": "not_applicable",
+        "local[score_X]": "bound",
+        "local[accumulator_A]": "bound",
+        "local[v_tile]": "partial",
+        "M_live[vreg:softmax]": "bound",
+        "M_live[vmem:softmax]": "partial",
+        "M_peak[all]": "partial",
+        "n_programs": "partial",
+        "n_kv_block_visits": "partial",
+        "V_lifetime_stages": "partial",
+        "W_resource[exp]": "partial",
+        "W_resource[reduce]": "partial",
+        "b_k_max[vreg:binding_stage]": "unknown",
+        "T_LB[mxu]": "unknown",
+        "T_LB[path:hbm_to_vmem]": "unknown",
+        "T_LB[combined]": "unknown",
+        "T_pred[node_interval]": "unknown"
+      },
+      "delta_vs_baseline": {
+        "F_total[useful]": 0,
+        "F_total[executed_graph]": 0,
+        "F_A_minus_F_E": 0,
+        "C_rect": 0,
+        "C_pad": 0,
+        "rect_waste": 0,
+        "B[hbm_to_vmem]": 0,
+        "B[vmem_to_hbm]": 0,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 0,
+        "local[accumulator_A]": 0,
+        "local[v_tile]": 0,
+        "M_live[vreg:softmax]": 0,
+        "M_live[vmem:softmax]": 0,
+        "M_peak[all]": 0,
+        "n_programs": 0,
+        "n_kv_block_visits": 0,
+        "V_lifetime_stages": 0,
+        "W_resource[exp]": 0,
+        "W_resource[reduce]": 0,
+        "b_k_max[vreg:binding_stage]": null,
+        "T_LB[mxu]": null,
+        "T_LB[path:hbm_to_vmem]": null,
+        "T_LB[combined]": null,
+        "T_pred[node_interval]": null
+      },
+      "legality": {
+        "mathematical": "legal",
+        "violations": [],
+        "backend_support": "unknown (no compilation evidence)",
+        "model_estimated_feasible_under_budget": null,
+        "binding_stage_per_level": null
+      },
+      "fingerprint": "55fd2c864359ee4e",
+      "structure": {
+        "local_objects": [
+          "accumulator_A",
+          "exp_E",
+          "fixed_scratch",
+          "k_nope_tile",
+          "k_pe_tile",
+          "kv_latent_rank_tile",
+          "lse_tile",
+          "out_tile",
+          "p_operand",
+          "q_latent_window",
+          "q_nope_operand",
+          "q_pe_tile",
+          "q_proj_acc",
+          "row_alpha",
+          "row_state_l",
+          "row_state_m",
+          "score_X",
+          "v_tile",
+          "wk_rank_tile",
+          "wq_rank_tile",
+          "wv_rank_tile"
+        ],
+        "materializations": [],
+        "mxu_tile_shapes": {
+          "QK_nope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_n"
+            ],
+            "value": [
+              16,
+              16,
+              24
+            ]
+          },
+          "QK_rope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_r"
+            ],
+            "value": [
+              16,
+              16,
+              8
+            ]
+          },
+          "PV": {
+            "symbolic": [
+              "b_q",
+              "D_v",
+              "b_k"
+            ],
+            "value": [
+              16,
+              24,
+              16
+            ]
+          }
+        }
+      },
+      "structure_delta": {
+        "appear": [],
+        "disappear": [],
+        "mxu_tile_shape_changes": {}
+      }
+    },
+    {
+      "name": "bq32_bk16",
+      "role": "candidate",
+      "algorithm": "expanded",
+      "strategy": {
+        "name": "bq32_bk16",
+        "b_q": 32,
+        "b_k": 16,
+        "b_rq": null,
+        "b_rk": null,
+        "scheduled_lengths": null,
+        "rect_policy": "skip_future",
+        "subdivide": null,
+        "executed_extent_policy": "logical",
+        "schedule": "q_outer_kv_inner",
+        "kv_buffers": 2,
+        "heads_per_program": 1,
+        "q_resident": null,
+        "projection_in_kv_loop": false,
+        "v_load": null,
+        "score_alias_exp": true,
+        "exp_alias_p_operand": false,
+        "both_qk_branches_live": false,
+        "materialize": {
+          "expanded_kv": false,
+          "q_nope": false
+        },
+        "layout": {},
+        "scratch_bytes": 0,
+        "vmem_budget_bytes": null,
+        "vreg_budget_bytes": null,
+        "overlap_model": "full_overlap_max",
+        "serial_stage_groups": null,
+        "notes": []
+      },
+      "values": {
+        "F_total[useful]": 3829760,
+        "F_total[executed_graph]": 5505024,
+        "F_A_minus_F_E": 532480,
+        "C_rect": 24576,
+        "C_pad": 24576,
+        "rect_waste": 7936,
+        "B[hbm_to_vmem]": 147456,
+        "B[vmem_to_hbm]": 26624,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 2048,
+        "local[accumulator_A]": 3072,
+        "local[v_tile]": 768,
+        "M_live[vreg:softmax]": 5504,
+        "M_live[vmem:softmax]": 2816,
+        "M_peak[all]": 12032,
+        "n_programs": 16,
+        "n_kv_block_visits": 48,
+        "V_lifetime_stages": 4,
+        "W_resource[exp]": 26112,
+        "W_resource[reduce]": 47616,
+        "b_k_max[vreg:binding_stage]": null,
+        "T_LB[mxu]": null,
+        "T_LB[path:hbm_to_vmem]": null,
+        "T_LB[combined]": null,
+        "T_pred[node_interval]": null
+      },
+      "statuses": {
+        "F_total[useful]": "bound",
+        "F_total[executed_graph]": "partial",
+        "F_A_minus_F_E": "bound",
+        "C_rect": "partial",
+        "C_pad": "partial",
+        "rect_waste": "partial",
+        "B[hbm_to_vmem]": "partial",
+        "B[vmem_to_hbm]": "partial",
+        "HBM_mat[K^n,V]": "not_applicable",
+        "local[score_X]": "bound",
+        "local[accumulator_A]": "bound",
+        "local[v_tile]": "partial",
+        "M_live[vreg:softmax]": "bound",
+        "M_live[vmem:softmax]": "partial",
+        "M_peak[all]": "partial",
+        "n_programs": "partial",
+        "n_kv_block_visits": "partial",
+        "V_lifetime_stages": "partial",
+        "W_resource[exp]": "partial",
+        "W_resource[reduce]": "partial",
+        "b_k_max[vreg:binding_stage]": "unknown",
+        "T_LB[mxu]": "unknown",
+        "T_LB[path:hbm_to_vmem]": "unknown",
+        "T_LB[combined]": "unknown",
+        "T_pred[node_interval]": "unknown"
+      },
+      "delta_vs_baseline": {
+        "F_total[useful]": 0,
+        "F_total[executed_graph]": -1114112,
+        "F_A_minus_F_E": 0,
+        "C_rect": 4096,
+        "C_pad": 4096,
+        "rect_waste": 4096,
+        "B[hbm_to_vmem]": -102400,
+        "B[vmem_to_hbm]": 0,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 1024,
+        "local[accumulator_A]": 1536,
+        "local[v_tile]": 0,
+        "M_live[vreg:softmax]": 2752,
+        "M_live[vmem:softmax]": 1024,
+        "M_peak[all]": 2688,
+        "n_programs": -16,
+        "n_kv_block_visits": -32,
+        "V_lifetime_stages": 0,
+        "W_resource[exp]": 4352,
+        "W_resource[reduce]": 7936,
+        "b_k_max[vreg:binding_stage]": null,
+        "T_LB[mxu]": null,
+        "T_LB[path:hbm_to_vmem]": null,
+        "T_LB[combined]": null,
+        "T_pred[node_interval]": null
+      },
+      "legality": {
+        "mathematical": "legal",
+        "violations": [],
+        "backend_support": "unknown (no compilation evidence)",
+        "model_estimated_feasible_under_budget": null,
+        "binding_stage_per_level": null
+      },
+      "fingerprint": "55fd2c864359ee4e",
+      "structure": {
+        "local_objects": [
+          "accumulator_A",
+          "exp_E",
+          "fixed_scratch",
+          "k_nope_tile",
+          "k_pe_tile",
+          "kv_latent_rank_tile",
+          "lse_tile",
+          "out_tile",
+          "p_operand",
+          "q_latent_window",
+          "q_nope_operand",
+          "q_pe_tile",
+          "q_proj_acc",
+          "row_alpha",
+          "row_state_l",
+          "row_state_m",
+          "score_X",
+          "v_tile",
+          "wk_rank_tile",
+          "wq_rank_tile",
+          "wv_rank_tile"
+        ],
+        "materializations": [],
+        "mxu_tile_shapes": {
+          "QK_nope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_n"
+            ],
+            "value": [
+              32,
+              16,
+              24
+            ]
+          },
+          "QK_rope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_r"
+            ],
+            "value": [
+              32,
+              16,
+              8
+            ]
+          },
+          "PV": {
+            "symbolic": [
+              "b_q",
+              "D_v",
+              "b_k"
+            ],
+            "value": [
+              32,
+              24,
+              16
+            ]
+          }
+        }
+      },
+      "structure_delta": {
+        "appear": [],
+        "disappear": [],
+        "mxu_tile_shape_changes": {
+          "QK_nope": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_n"
+              ],
+              "value": [
+                16,
+                16,
+                24
+              ]
+            },
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_n"
+              ],
+              "value": [
+                32,
+                16,
+                24
+              ]
+            }
+          },
+          "QK_rope": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_r"
+              ],
+              "value": [
+                16,
+                16,
+                8
+              ]
+            },
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_r"
+              ],
+              "value": [
+                32,
+                16,
+                8
+              ]
+            }
+          },
+          "PV": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "D_v",
+                "b_k"
+              ],
+              "value": [
+                16,
+                24,
+                16
+              ]
+            },
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "D_v",
+                "b_k"
+              ],
+              "value": [
+                32,
+                24,
+                16
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "bq16_bk32",
+      "role": "candidate",
+      "algorithm": "expanded",
+      "strategy": {
+        "name": "bq16_bk32",
+        "b_q": 16,
+        "b_k": 32,
+        "b_rq": null,
+        "b_rk": null,
+        "scheduled_lengths": null,
+        "rect_policy": "skip_future",
+        "subdivide": null,
+        "executed_extent_policy": "logical",
+        "schedule": "q_outer_kv_inner",
+        "kv_buffers": 2,
+        "heads_per_program": 1,
+        "q_resident": null,
+        "projection_in_kv_loop": false,
+        "v_load": null,
+        "score_alias_exp": true,
+        "exp_alias_p_operand": false,
+        "both_qk_branches_live": false,
+        "materialize": {
+          "expanded_kv": false,
+          "q_nope": false
+        },
+        "layout": {},
+        "scratch_bytes": 0,
+        "vmem_budget_bytes": null,
+        "vreg_budget_bytes": null,
+        "overlap_model": "full_overlap_max",
+        "serial_stage_groups": null,
+        "notes": []
+      },
+      "values": {
+        "F_total[useful]": 3829760,
+        "F_total[executed_graph]": 7864320,
+        "F_A_minus_F_E": 532480,
+        "C_rect": 24576,
+        "C_pad": 24576,
+        "rect_waste": 7936,
+        "B[hbm_to_vmem]": 270336,
+        "B[vmem_to_hbm]": 26624,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 2048,
+        "local[accumulator_A]": 1536,
+        "local[v_tile]": 1536,
+        "M_live[vreg:softmax]": 3776,
+        "M_live[vmem:softmax]": 2560,
+        "M_peak[all]": 12928,
+        "n_programs": 32,
+        "n_kv_block_visits": 48,
+        "V_lifetime_stages": 4,
+        "W_resource[exp]": 25344,
+        "W_resource[reduce]": 48384,
+        "b_k_max[vreg:binding_stage]": null,
+        "T_LB[mxu]": null,
+        "T_LB[path:hbm_to_vmem]": null,
+        "T_LB[combined]": null,
+        "T_pred[node_interval]": null
+      },
+      "statuses": {
+        "F_total[useful]": "bound",
+        "F_total[executed_graph]": "partial",
+        "F_A_minus_F_E": "bound",
+        "C_rect": "partial",
+        "C_pad": "partial",
+        "rect_waste": "partial",
+        "B[hbm_to_vmem]": "partial",
+        "B[vmem_to_hbm]": "partial",
+        "HBM_mat[K^n,V]": "not_applicable",
+        "local[score_X]": "bound",
+        "local[accumulator_A]": "bound",
+        "local[v_tile]": "partial",
+        "M_live[vreg:softmax]": "bound",
+        "M_live[vmem:softmax]": "partial",
+        "M_peak[all]": "partial",
+        "n_programs": "partial",
+        "n_kv_block_visits": "partial",
+        "V_lifetime_stages": "partial",
+        "W_resource[exp]": "partial",
+        "W_resource[reduce]": "partial",
+        "b_k_max[vreg:binding_stage]": "unknown",
+        "T_LB[mxu]": "unknown",
+        "T_LB[path:hbm_to_vmem]": "unknown",
+        "T_LB[combined]": "unknown",
+        "T_pred[node_interval]": "unknown"
+      },
+      "delta_vs_baseline": {
+        "F_total[useful]": 0,
+        "F_total[executed_graph]": 1245184,
+        "F_A_minus_F_E": 0,
+        "C_rect": 4096,
+        "C_pad": 4096,
+        "rect_waste": 4096,
+        "B[hbm_to_vmem]": 20480,
+        "B[vmem_to_hbm]": 0,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 1024,
+        "local[accumulator_A]": 0,
+        "local[v_tile]": 768,
+        "M_live[vreg:softmax]": 1024,
+        "M_live[vmem:softmax]": 768,
+        "M_peak[all]": 3584,
+        "n_programs": 0,
+        "n_kv_block_visits": -32,
+        "V_lifetime_stages": 0,
+        "W_resource[exp]": 3584,
+        "W_resource[reduce]": 8704,
+        "b_k_max[vreg:binding_stage]": null,
+        "T_LB[mxu]": null,
+        "T_LB[path:hbm_to_vmem]": null,
+        "T_LB[combined]": null,
+        "T_pred[node_interval]": null
+      },
+      "legality": {
+        "mathematical": "legal",
+        "violations": [],
+        "backend_support": "unknown (no compilation evidence)",
+        "model_estimated_feasible_under_budget": null,
+        "binding_stage_per_level": null
+      },
+      "fingerprint": "55fd2c864359ee4e",
+      "structure": {
+        "local_objects": [
+          "accumulator_A",
+          "exp_E",
+          "fixed_scratch",
+          "k_nope_tile",
+          "k_pe_tile",
+          "kv_latent_rank_tile",
+          "lse_tile",
+          "out_tile",
+          "p_operand",
+          "q_latent_window",
+          "q_nope_operand",
+          "q_pe_tile",
+          "q_proj_acc",
+          "row_alpha",
+          "row_state_l",
+          "row_state_m",
+          "score_X",
+          "v_tile",
+          "wk_rank_tile",
+          "wq_rank_tile",
+          "wv_rank_tile"
+        ],
+        "materializations": [],
+        "mxu_tile_shapes": {
+          "QK_nope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_n"
+            ],
+            "value": [
+              16,
+              32,
+              24
+            ]
+          },
+          "QK_rope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_r"
+            ],
+            "value": [
+              16,
+              32,
+              8
+            ]
+          },
+          "PV": {
+            "symbolic": [
+              "b_q",
+              "D_v",
+              "b_k"
+            ],
+            "value": [
+              16,
+              24,
+              32
+            ]
+          }
+        }
+      },
+      "structure_delta": {
+        "appear": [],
+        "disappear": [],
+        "mxu_tile_shape_changes": {
+          "QK_nope": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_n"
+              ],
+              "value": [
+                16,
+                16,
+                24
+              ]
+            },
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_n"
+              ],
+              "value": [
+                16,
+                32,
+                24
+              ]
+            }
+          },
+          "QK_rope": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_r"
+              ],
+              "value": [
+                16,
+                16,
+                8
+              ]
+            },
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_r"
+              ],
+              "value": [
+                16,
+                32,
+                8
+              ]
+            }
+          },
+          "PV": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "D_v",
+                "b_k"
+              ],
+              "value": [
+                16,
+                24,
+                16
+              ]
+            },
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "D_v",
+                "b_k"
+              ],
+              "value": [
+                16,
+                24,
+                32
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "bq16_bk16_fullscan",
+      "role": "candidate",
+      "algorithm": "expanded",
+      "strategy": {
+        "name": "bq16_bk16_fullscan",
+        "b_q": 16,
+        "b_k": 16,
+        "b_rq": null,
+        "b_rk": null,
+        "scheduled_lengths": null,
+        "rect_policy": "full_scan",
+        "subdivide": null,
+        "executed_extent_policy": "logical",
+        "schedule": "q_outer_kv_inner",
+        "kv_buffers": 2,
+        "heads_per_program": 1,
+        "q_resident": null,
+        "projection_in_kv_loop": false,
+        "v_load": null,
+        "score_alias_exp": true,
+        "exp_alias_p_operand": false,
+        "both_qk_branches_live": false,
+        "materialize": {
+          "expanded_kv": false,
+          "q_nope": false
+        },
+        "layout": {},
+        "scratch_bytes": 0,
+        "vmem_budget_bytes": null,
+        "vreg_budget_bytes": null,
+        "overlap_model": "full_overlap_max",
+        "serial_stage_groups": null,
+        "notes": []
+      },
+      "values": {
+        "F_total[useful]": 3829760,
+        "F_total[executed_graph]": 10354688,
+        "F_A_minus_F_E": 532480,
+        "C_rect": 32768,
+        "C_pad": 32768,
+        "rect_waste": 16128,
+        "B[hbm_to_vmem]": 311296,
+        "B[vmem_to_hbm]": 26624,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 1024,
+        "local[accumulator_A]": 1536,
+        "local[v_tile]": 768,
+        "M_live[vreg:softmax]": 2752,
+        "M_live[vmem:softmax]": 1792,
+        "M_peak[all]": 9344,
+        "n_programs": 32,
+        "n_kv_block_visits": 128,
+        "V_lifetime_stages": 4,
+        "W_resource[exp]": 34816,
+        "W_resource[reduce]": 63488,
+        "b_k_max[vreg:binding_stage]": null,
+        "T_LB[mxu]": null,
+        "T_LB[path:hbm_to_vmem]": null,
+        "T_LB[combined]": null,
+        "T_pred[node_interval]": null
+      },
+      "statuses": {
+        "F_total[useful]": "bound",
+        "F_total[executed_graph]": "partial",
+        "F_A_minus_F_E": "bound",
+        "C_rect": "partial",
+        "C_pad": "partial",
+        "rect_waste": "partial",
+        "B[hbm_to_vmem]": "partial",
+        "B[vmem_to_hbm]": "partial",
+        "HBM_mat[K^n,V]": "not_applicable",
+        "local[score_X]": "bound",
+        "local[accumulator_A]": "bound",
+        "local[v_tile]": "partial",
+        "M_live[vreg:softmax]": "bound",
+        "M_live[vmem:softmax]": "partial",
+        "M_peak[all]": "partial",
+        "n_programs": "partial",
+        "n_kv_block_visits": "partial",
+        "V_lifetime_stages": "partial",
+        "W_resource[exp]": "partial",
+        "W_resource[reduce]": "partial",
+        "b_k_max[vreg:binding_stage]": "unknown",
+        "T_LB[mxu]": "unknown",
+        "T_LB[path:hbm_to_vmem]": "unknown",
+        "T_LB[combined]": "unknown",
+        "T_pred[node_interval]": "unknown"
+      },
+      "delta_vs_baseline": {
+        "F_total[useful]": 0,
+        "F_total[executed_graph]": 3735552,
+        "F_A_minus_F_E": 0,
+        "C_rect": 12288,
+        "C_pad": 12288,
+        "rect_waste": 12288,
+        "B[hbm_to_vmem]": 61440,
+        "B[vmem_to_hbm]": 0,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 0,
+        "local[accumulator_A]": 0,
+        "local[v_tile]": 0,
+        "M_live[vreg:softmax]": 0,
+        "M_live[vmem:softmax]": 0,
+        "M_peak[all]": 0,
+        "n_programs": 0,
+        "n_kv_block_visits": 48,
+        "V_lifetime_stages": 0,
+        "W_resource[exp]": 13056,
+        "W_resource[reduce]": 23808,
+        "b_k_max[vreg:binding_stage]": null,
+        "T_LB[mxu]": null,
+        "T_LB[path:hbm_to_vmem]": null,
+        "T_LB[combined]": null,
+        "T_pred[node_interval]": null
+      },
+      "legality": {
+        "mathematical": "legal",
+        "violations": [],
+        "backend_support": "unknown (no compilation evidence)",
+        "model_estimated_feasible_under_budget": null,
+        "binding_stage_per_level": null
+      },
+      "fingerprint": "55fd2c864359ee4e",
+      "structure": {
+        "local_objects": [
+          "accumulator_A",
+          "exp_E",
+          "fixed_scratch",
+          "k_nope_tile",
+          "k_pe_tile",
+          "kv_latent_rank_tile",
+          "lse_tile",
+          "out_tile",
+          "p_operand",
+          "q_latent_window",
+          "q_nope_operand",
+          "q_pe_tile",
+          "q_proj_acc",
+          "row_alpha",
+          "row_state_l",
+          "row_state_m",
+          "score_X",
+          "v_tile",
+          "wk_rank_tile",
+          "wq_rank_tile",
+          "wv_rank_tile"
+        ],
+        "materializations": [],
+        "mxu_tile_shapes": {
+          "QK_nope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_n"
+            ],
+            "value": [
+              16,
+              16,
+              24
+            ]
+          },
+          "QK_rope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_r"
+            ],
+            "value": [
+              16,
+              16,
+              8
+            ]
+          },
+          "PV": {
+            "symbolic": [
+              "b_q",
+              "D_v",
+              "b_k"
+            ],
+            "value": [
+              16,
+              24,
+              16
+            ]
+          }
+        }
+      },
+      "structure_delta": {
+        "appear": [],
+        "disappear": [],
+        "mxu_tile_shape_changes": {}
+      }
+    },
+    {
+      "name": "bq16_bk16_h4",
+      "role": "candidate",
+      "algorithm": "expanded",
+      "strategy": {
+        "name": "bq16_bk16_h4",
+        "b_q": 16,
+        "b_k": 16,
+        "b_rq": null,
+        "b_rk": null,
+        "scheduled_lengths": null,
+        "rect_policy": "skip_future",
+        "subdivide": null,
+        "executed_extent_policy": "logical",
+        "schedule": "q_outer_kv_inner",
+        "kv_buffers": 2,
+        "heads_per_program": 4,
+        "q_resident": null,
+        "projection_in_kv_loop": false,
+        "v_load": null,
+        "score_alias_exp": true,
+        "exp_alias_p_operand": false,
+        "both_qk_branches_live": false,
+        "materialize": {
+          "expanded_kv": false,
+          "q_nope": false
+        },
+        "layout": {},
+        "scratch_bytes": 0,
+        "vmem_budget_bytes": null,
+        "vreg_budget_bytes": null,
+        "overlap_model": "full_overlap_max",
+        "serial_stage_groups": null,
+        "notes": []
+      },
+      "values": {
+        "F_total[useful]": 3829760,
+        "F_total[executed_graph]": 6619136,
+        "F_A_minus_F_E": 532480,
+        "C_rect": 20480,
+        "C_pad": 20480,
+        "rect_waste": 3840,
+        "B[hbm_to_vmem]": 160768,
+        "B[vmem_to_hbm]": 26624,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 1024,
+        "local[accumulator_A]": 1536,
+        "local[v_tile]": 768,
+        "M_live[vreg:softmax]": 2752,
+        "M_live[vmem:softmax]": 1792,
+        "M_peak[all]": 9344,
+        "n_programs": 8,
+        "n_kv_block_visits": 80,
+        "V_lifetime_stages": 4,
+        "W_resource[exp]": 21760,
+        "W_resource[reduce]": 39680,
+        "b_k_max[vreg:binding_stage]": null,
+        "T_LB[mxu]": null,
+        "T_LB[path:hbm_to_vmem]": null,
+        "T_LB[combined]": null,
+        "T_pred[node_interval]": null
+      },
+      "statuses": {
+        "F_total[useful]": "bound",
+        "F_total[executed_graph]": "partial",
+        "F_A_minus_F_E": "bound",
+        "C_rect": "partial",
+        "C_pad": "partial",
+        "rect_waste": "partial",
+        "B[hbm_to_vmem]": "partial",
+        "B[vmem_to_hbm]": "partial",
+        "HBM_mat[K^n,V]": "not_applicable",
+        "local[score_X]": "bound",
+        "local[accumulator_A]": "bound",
+        "local[v_tile]": "partial",
+        "M_live[vreg:softmax]": "bound",
+        "M_live[vmem:softmax]": "partial",
+        "M_peak[all]": "partial",
+        "n_programs": "partial",
+        "n_kv_block_visits": "partial",
+        "V_lifetime_stages": "partial",
+        "W_resource[exp]": "partial",
+        "W_resource[reduce]": "partial",
+        "b_k_max[vreg:binding_stage]": "unknown",
+        "T_LB[mxu]": "unknown",
+        "T_LB[path:hbm_to_vmem]": "unknown",
+        "T_LB[combined]": "unknown",
+        "T_pred[node_interval]": "unknown"
+      },
+      "delta_vs_baseline": {
+        "F_total[useful]": 0,
+        "F_total[executed_graph]": 0,
+        "F_A_minus_F_E": 0,
+        "C_rect": 0,
+        "C_pad": 0,
+        "rect_waste": 0,
+        "B[hbm_to_vmem]": -89088,
+        "B[vmem_to_hbm]": 0,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 0,
+        "local[accumulator_A]": 0,
+        "local[v_tile]": 0,
+        "M_live[vreg:softmax]": 0,
+        "M_live[vmem:softmax]": 0,
+        "M_peak[all]": 0,
+        "n_programs": -24,
+        "n_kv_block_visits": 0,
+        "V_lifetime_stages": 0,
+        "W_resource[exp]": 0,
+        "W_resource[reduce]": 0,
+        "b_k_max[vreg:binding_stage]": null,
+        "T_LB[mxu]": null,
+        "T_LB[path:hbm_to_vmem]": null,
+        "T_LB[combined]": null,
+        "T_pred[node_interval]": null
+      },
+      "legality": {
+        "mathematical": "legal",
+        "violations": [],
+        "backend_support": "unknown (no compilation evidence)",
+        "model_estimated_feasible_under_budget": null,
+        "binding_stage_per_level": null
+      },
+      "fingerprint": "55fd2c864359ee4e",
+      "structure": {
+        "local_objects": [
+          "accumulator_A",
+          "exp_E",
+          "fixed_scratch",
+          "k_nope_tile",
+          "k_pe_tile",
+          "kv_latent_rank_tile",
+          "lse_tile",
+          "out_tile",
+          "p_operand",
+          "q_latent_window",
+          "q_nope_operand",
+          "q_pe_tile",
+          "q_proj_acc",
+          "row_alpha",
+          "row_state_l",
+          "row_state_m",
+          "score_X",
+          "v_tile",
+          "wk_rank_tile",
+          "wq_rank_tile",
+          "wv_rank_tile"
+        ],
+        "materializations": [],
+        "mxu_tile_shapes": {
+          "QK_nope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_n"
+            ],
+            "value": [
+              16,
+              16,
+              24
+            ]
+          },
+          "QK_rope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_r"
+            ],
+            "value": [
+              16,
+              16,
+              8
+            ]
+          },
+          "PV": {
+            "symbolic": [
+              "b_q",
+              "D_v",
+              "b_k"
+            ],
+            "value": [
+              16,
+              24,
+              16
+            ]
+          }
+        }
+      },
+      "structure_delta": {
+        "appear": [],
+        "disappear": [],
+        "mxu_tile_shape_changes": {}
+      }
+    },
+    {
+      "name": "switch_to_absorbed [absorbed_two_step]",
+      "role": "candidate",
+      "algorithm": "absorbed_two_step",
+      "strategy": {
+        "name": "switch_to_absorbed",
+        "b_q": 16,
+        "b_k": 16,
+        "b_rq": null,
+        "b_rk": null,
+        "scheduled_lengths": null,
+        "rect_policy": "skip_future",
+        "subdivide": null,
+        "executed_extent_policy": "logical",
+        "schedule": "q_outer_kv_inner",
+        "kv_buffers": 2,
+        "heads_per_program": 1,
+        "q_resident": null,
+        "projection_in_kv_loop": false,
+        "v_load": null,
+        "score_alias_exp": true,
+        "exp_alias_p_operand": false,
+        "both_qk_branches_live": false,
+        "materialize": {
+          "expanded_kv": false,
+          "q_nope": false,
+          "q_tilde": false,
+          "z": false
+        },
+        "layout": {},
+        "scratch_bytes": 0,
+        "vmem_budget_bytes": null,
+        "vreg_budget_bytes": null,
+        "overlap_model": "full_overlap_max",
+        "serial_stage_groups": null,
+        "notes": []
+      },
+      "values": {
+        "F_total[useful]": 4362240,
+        "F_total[executed_graph]": 4915200,
+        "F_A_minus_F_E": 532480,
+        "C_rect": 20480,
+        "C_pad": 20480,
+        "rect_waste": 3840,
+        "B[hbm_to_vmem]": 249856,
+        "B[vmem_to_hbm]": 26624,
+        "HBM_mat[K^n,V]": "n/a (not present in this variant)",
+        "local[score_X]": 1024,
+        "local[accumulator_A]": 2048,
+        "local[v_tile]": "n/a (not present in this variant)",
+        "M_live[vreg:softmax]": 3264,
+        "M_live[vmem:softmax]": 3328,
+        "M_peak[all]": 7104,
+        "n_programs": 32,
+        "n_kv_block_visits": 80,
+        "V_lifetime_stages": "n/a (not present in this variant)",
+        "W_resource[exp]": 21760,
+        "W_resource[reduce]": 39680,
+        "b_k_max[vreg:binding_stage]": null,
+        "T_LB[mxu]": null,
+        "T_LB[path:hbm_to_vmem]": null,
+        "T_LB[combined]": null,
+        "T_pred[node_interval]": null
+      },
+      "statuses": {
+        "F_total[useful]": "bound",
+        "F_total[executed_graph]": "partial",
+        "F_A_minus_F_E": "bound",
+        "C_rect": "partial",
+        "C_pad": "partial",
+        "rect_waste": "partial",
+        "B[hbm_to_vmem]": "partial",
+        "B[vmem_to_hbm]": "partial",
+        "HBM_mat[K^n,V]": "not_applicable",
+        "local[score_X]": "bound",
+        "local[accumulator_A]": "bound",
+        "local[v_tile]": "not_applicable",
+        "M_live[vreg:softmax]": "bound",
+        "M_live[vmem:softmax]": "partial",
+        "M_peak[all]": "partial",
+        "n_programs": "partial",
+        "n_kv_block_visits": "partial",
+        "V_lifetime_stages": "not_applicable",
+        "W_resource[exp]": "partial",
+        "W_resource[reduce]": "partial",
+        "b_k_max[vreg:binding_stage]": "unknown",
+        "T_LB[mxu]": "unknown",
+        "T_LB[path:hbm_to_vmem]": "unknown",
+        "T_LB[combined]": "unknown",
+        "T_pred[node_interval]": "unknown"
+      },
+      "delta_vs_baseline": {
+        "F_total[useful]": 532480,
+        "F_total[executed_graph]": -1703936,
+        "F_A_minus_F_E": 0,
+        "C_rect": 0,
+        "C_pad": 0,
+        "rect_waste": 0,
+        "B[hbm_to_vmem]": 0,
+        "B[vmem_to_hbm]": 0,
+        "HBM_mat[K^n,V]": "disappears",
+        "local[score_X]": 0,
+        "local[accumulator_A]": 512,
+        "local[v_tile]": "disappears",
+        "M_live[vreg:softmax]": 512,
+        "M_live[vmem:softmax]": 1536,
+        "M_peak[all]": -2240,
+        "n_programs": 0,
+        "n_kv_block_visits": 0,
+        "V_lifetime_stages": "disappears",
+        "W_resource[exp]": 0,
+        "W_resource[reduce]": 0,
+        "b_k_max[vreg:binding_stage]": null,
+        "T_LB[mxu]": null,
+        "T_LB[path:hbm_to_vmem]": null,
+        "T_LB[combined]": null,
+        "T_pred[node_interval]": null
+      },
+      "legality": {
+        "mathematical": "legal",
+        "violations": [],
+        "backend_support": "unknown (no compilation evidence)",
+        "model_estimated_feasible_under_budget": null,
+        "binding_stage_per_level": null
+      },
+      "fingerprint": "55fd2c864359ee4e",
+      "structure": {
+        "local_objects": [
+          "accumulator_A",
+          "exp_E",
+          "fixed_scratch",
+          "k_pe_tile",
+          "kv_latent_tile",
+          "lse_tile",
+          "out_tile",
+          "p_operand",
+          "q_latent_window",
+          "q_pe_tile",
+          "q_proj_acc",
+          "q_tilde",
+          "q_tilde_acc",
+          "row_alpha",
+          "row_state_l",
+          "row_state_m",
+          "score_X",
+          "wk_full",
+          "wq_rank_tile",
+          "wv_full",
+          "z_tile"
+        ],
+        "materializations": [],
+        "mxu_tile_shapes": {
+          "QC_latent": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "R_k"
+            ],
+            "value": [
+              16,
+              16,
+              32
+            ]
+          },
+          "QK_rope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_r"
+            ],
+            "value": [
+              16,
+              16,
+              8
+            ]
+          },
+          "PC_latent": {
+            "symbolic": [
+              "b_q",
+              "R_k",
+              "b_k"
+            ],
+            "value": [
+              16,
+              32,
+              16
+            ]
+          }
+        }
+      },
+      "structure_delta": {
+        "appear": [
+          "kv_latent_tile",
+          "q_tilde",
+          "q_tilde_acc",
+          "wk_full",
+          "wv_full",
+          "z_tile"
+        ],
+        "disappear": [
+          "k_nope_tile",
+          "kv_latent_rank_tile",
+          "q_nope_operand",
+          "v_tile",
+          "wk_rank_tile",
+          "wv_rank_tile"
+        ],
+        "mxu_tile_shape_changes": {
+          "QC_latent": {
+            "baseline": null,
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "R_k"
+              ],
+              "value": [
+                16,
+                16,
+                32
+              ]
+            }
+          },
+          "PC_latent": {
+            "baseline": null,
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "R_k",
+                "b_k"
+              ],
+              "value": [
+                16,
+                32,
+                16
+              ]
+            }
+          },
+          "QK_nope": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_n"
+              ],
+              "value": [
+                16,
+                16,
+                24
+              ]
+            },
+            "candidate": null
+          },
+          "PV": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "D_v",
+                "b_k"
+              ],
+              "value": [
+                16,
+                24,
+                16
+              ]
+            },
+            "candidate": null
+          }
+        }
+      }
+    }
+  ],
+  "useful_work_invariant": true,
+  "pareto_objectives": [
+    "B[hbm_to_vmem]",
+    "W_resource[reduce]",
+    "rect_waste",
+    "M_live[vreg:softmax]",
+    "M_live[vmem:softmax]",
+    "n_programs"
+  ],
+  "pareto_set": [
+    "bq32_bk16",
+    "bq16_bk16_h4"
+  ],
+  "candidates_considered": [
+    "bq16_bk16",
+    "bq32_bk16",
+    "bq16_bk32",
+    "bq16_bk16_fullscan",
+    "bq16_bk16_h4",
+    "switch_to_absorbed [absorbed_two_step]"
+  ],
+  "excluded_candidates": [],
+  "model_infeasible_candidates": [],
+  "calibrated_ranking": null,
+  "ranking_note": null,
+  "selection_notes": [
+    "objectives whose values are scenario values (status partial) for some candidate, so the Pareto filter compares scenarios, not complete figures: B[hbm_to_vmem], M_live[vmem:softmax], W_resource[reduce], n_programs, rect_waste"
+  ],
+  "verdict": "no calibration: Pareto set / hypotheses requiring validation, not a measured winner"
+}

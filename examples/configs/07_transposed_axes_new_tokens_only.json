@@ -1,0 +1,122 @@
+{
+  "_comment": "ILLUSTRATIVE transposed physical layout declared by axis names; expanded KV cache exists and only 16 new tokens are projected",
+  "algorithm": "expanded",
+  "tensors": {
+    "q_latent": {
+      "shape": [
+        16,
+        2,
+        24
+      ],
+      "dtype": "bfloat16",
+      "axes": [
+        "Sq",
+        "B",
+        "Rq"
+      ]
+    },
+    "kv_latent": {
+      "shape": [
+        2,
+        64,
+        320
+      ],
+      "dtype": "bfloat16",
+      "axes": [
+        "B",
+        "Rk",
+        "Sk"
+      ]
+    },
+    "q_pe": {
+      "shape": [
+        2,
+        6,
+        16,
+        16
+      ],
+      "dtype": "bfloat16"
+    },
+    "k_pe": {
+      "shape": [
+        2,
+        320,
+        16
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_q_nope": {
+      "shape": [
+        6,
+        24,
+        32
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_k_nope": {
+      "shape": [
+        6,
+        64,
+        32
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_v": {
+      "shape": [
+        6,
+        64,
+        32
+      ],
+      "dtype": "bfloat16"
+    }
+  },
+  "semantics": {
+    "mask": "causal",
+    "position_offset": 304,
+    "scale_policy": "standard",
+    "outputs": [
+      "O"
+    ],
+    "projection_scope": "new_tokens_only",
+    "cache": {
+      "kind": "expanded_kv",
+      "cached_tokens": 304
+    },
+    "empty_row_policy": "error",
+    "active_lengths": {
+      "Sq": 16,
+      "Sk": 320
+    }
+  },
+  "implementation": {
+    "name": "bq16_bk64",
+    "b_q": 16,
+    "b_k": 64,
+    "rect_policy": "skip_future",
+    "executed_extent_policy": "logical",
+    "kv_buffers": 2,
+    "heads_per_program": 1,
+    "score_alias_exp": true,
+    "exp_alias_p_operand": false,
+    "both_qk_branches_live": false,
+    "scratch_bytes": 0,
+    "projection_in_kv_loop": false,
+    "materialize": {
+      "expanded_kv": false,
+      "q_nope": false
+    },
+    "overlap_model": "full_overlap_max"
+  },
+  "numerics": {
+    "matmul_input_dtype": "bfloat16",
+    "accumulator_dtype": "float32",
+    "score_dtype": "float32",
+    "exp_dtype": "float32",
+    "p_operand_dtype": "bfloat16",
+    "state_dtype": "float32",
+    "output_dtype": "bfloat16",
+    "lse_dtype": "float32",
+    "exp_base": "e",
+    "recurrence": "unnormalized"
+  }
+}

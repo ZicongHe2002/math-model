@@ -1,0 +1,67 @@
+{
+  "_comment": "EXPECTED TO FAIL: H differs between w_q_nope and w_k_nope, and B differs in k_pe",
+  "algorithm": "expanded",
+  "tensors": {
+    "q_latent": {
+      "shape": [
+        2,
+        16,
+        8
+      ],
+      "dtype": "bfloat16"
+    },
+    "kv_latent": {
+      "shape": [
+        2,
+        16,
+        8
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_q_nope": {
+      "shape": [
+        4,
+        8,
+        8
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_k_nope": {
+      "shape": [
+        5,
+        8,
+        8
+      ],
+      "dtype": "bfloat16"
+    },
+    "w_v": {
+      "shape": [
+        4,
+        8,
+        8
+      ],
+      "dtype": "bfloat16"
+    },
+    "q_pe": {
+      "shape": [
+        2,
+        4,
+        16,
+        4
+      ],
+      "dtype": "bfloat16"
+    },
+    "k_pe": {
+      "shape": [
+        3,
+        16,
+        4
+      ],
+      "dtype": "bfloat16"
+    }
+  },
+  "semantics": {
+    "mask": "causal",
+    "position_offset": 0
+  }
+}

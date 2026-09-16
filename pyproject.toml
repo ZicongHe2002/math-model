@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mla-model"
+version = "0.1.0"
+description = "Parameter-driven symbolic/executable mathematical model of MLA forward (CPU-only core)"
+requires-python = ">=3.10"
+dependencies = ["sympy>=1.12", "numpy>=1.24", "PyYAML>=6"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[tool.setuptools]
+packages = ["mla_model", "mla_model.reference"]
+
+[tool.setuptools.package-data]
+mla_model = ["profiles/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

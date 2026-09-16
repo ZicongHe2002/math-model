@@ -1,0 +1,852 @@
+{
+  "task_fingerprint": "f257b3dc6072875a",
+  "algorithm": "expanded",
+  "rows": [
+    {
+      "name": "bq128_bk128",
+      "role": "baseline",
+      "algorithm": "expanded",
+      "strategy": {
+        "name": "bq128_bk128",
+        "b_q": 128,
+        "b_k": 128,
+        "b_rq": null,
+        "b_rk": null,
+        "scheduled_lengths": null,
+        "rect_policy": "skip_future",
+        "subdivide": null,
+        "executed_extent_policy": "padded_to_tile",
+        "schedule": null,
+        "kv_buffers": 2,
+        "heads_per_program": 1,
+        "q_resident": null,
+        "projection_in_kv_loop": false,
+        "v_load": null,
+        "score_alias_exp": true,
+        "exp_alias_p_operand": false,
+        "both_qk_branches_live": false,
+        "materialize": {
+          "expanded_kv": false,
+          "q_nope": false
+        },
+        "layout": {},
+        "scratch_bytes": 0,
+        "vmem_budget_bytes": null,
+        "vreg_budget_bytes": 65536,
+        "overlap_model": "full_overlap_max",
+        "serial_stage_groups": null,
+        "notes": []
+      },
+      "values": {
+        "F_total[useful]": 596508672,
+        "F_total[executed_graph]": 864026624,
+        "F_A_minus_F_E": 134479872,
+        "C_rect": 2621440,
+        "C_pad": 2621440,
+        "rect_waste": 520192,
+        "B[hbm_to_vmem]": 5046272,
+        "B[vmem_to_hbm]": 819200,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 65536,
+        "local[accumulator_A]": 24576,
+        "local[v_tile]": 12288,
+        "M_live[vreg:softmax]": 91648,
+        "M_live[vmem:softmax]": 28672,
+        "M_peak[all]": 153088,
+        "n_programs": 64,
+        "n_kv_block_visits": 160,
+        "V_lifetime_stages": 4,
+        "W_resource[exp]": 2641920,
+        "W_resource[reduce]": 5222400,
+        "b_k_max[vreg:binding_stage]": 51,
+        "T_LB[mxu]": 8.64026624e-06,
+        "T_LB[path:hbm_to_vmem]": 6.307839999999999e-06,
+        "T_LB[combined]": 1.32096e-05,
+        "T_pred[node_interval]": [
+          1.8543237485714286e-05,
+          3.088647497142858e-05
+        ]
+      },
+      "statuses": {
+        "F_total[useful]": "bound",
+        "F_total[executed_graph]": "partial",
+        "F_A_minus_F_E": "bound",
+        "C_rect": "partial",
+        "C_pad": "partial",
+        "rect_waste": "partial",
+        "B[hbm_to_vmem]": "partial",
+        "B[vmem_to_hbm]": "partial",
+        "HBM_mat[K^n,V]": "not_applicable",
+        "local[score_X]": "bound",
+        "local[accumulator_A]": "bound",
+        "local[v_tile]": "partial",
+        "M_live[vreg:softmax]": "bound",
+        "M_live[vmem:softmax]": "partial",
+        "M_peak[all]": "partial",
+        "n_programs": "partial",
+        "n_kv_block_visits": "partial",
+        "V_lifetime_stages": "partial",
+        "W_resource[exp]": "partial",
+        "W_resource[reduce]": "partial",
+        "b_k_max[vreg:binding_stage]": "bound",
+        "T_LB[mxu]": "partial",
+        "T_LB[path:hbm_to_vmem]": "partial",
+        "T_LB[combined]": "partial",
+        "T_pred[node_interval]": "partial"
+      },
+      "delta_vs_baseline": {
+        "F_total[useful]": 0,
+        "F_total[executed_graph]": 0,
+        "F_A_minus_F_E": 0,
+        "C_rect": 0,
+        "C_pad": 0,
+        "rect_waste": 0,
+        "B[hbm_to_vmem]": 0,
+        "B[vmem_to_hbm]": 0,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 0,
+        "local[accumulator_A]": 0,
+        "local[v_tile]": 0,
+        "M_live[vreg:softmax]": 0,
+        "M_live[vmem:softmax]": 0,
+        "M_peak[all]": 0,
+        "n_programs": 0,
+        "n_kv_block_visits": 0,
+        "V_lifetime_stages": 0,
+        "W_resource[exp]": 0,
+        "W_resource[reduce]": 0,
+        "b_k_max[vreg:binding_stage]": 0,
+        "T_LB[mxu]": 0,
+        "T_LB[path:hbm_to_vmem]": 0,
+        "T_LB[combined]": 0,
+        "T_pred[node_interval]": null
+      },
+      "legality": {
+        "mathematical": "legal",
+        "violations": [],
+        "backend_support": "unknown (no compilation evidence)",
+        "model_estimated_feasible_under_budget": {
+          "vreg": {
+            "verdict": false,
+            "status": "bound",
+            "stages_not_evaluated": [],
+            "stages_over_budget_independently_of_b_k": [],
+            "feasible_region_empty": false
+          }
+        },
+        "binding_stage_per_level": {
+          "vreg": {
+            "binding_stage": "pv",
+            "b_k_max": 51
+          }
+        }
+      },
+      "fingerprint": "f257b3dc6072875a",
+      "structure": {
+        "local_objects": [
+          "accumulator_A",
+          "exp_E",
+          "fixed_scratch",
+          "k_nope_tile",
+          "k_pe_tile",
+          "kv_latent_rank_tile",
+          "lse_tile",
+          "out_tile",
+          "p_operand",
+          "q_latent_window",
+          "q_nope_operand",
+          "q_pe_tile",
+          "q_proj_acc",
+          "row_alpha",
+          "row_state_l",
+          "row_state_m",
+          "score_X",
+          "v_tile",
+          "wk_rank_tile",
+          "wq_rank_tile",
+          "wv_rank_tile"
+        ],
+        "materializations": [],
+        "mxu_tile_shapes": {
+          "QK_nope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_n"
+            ],
+            "value": [
+              128,
+              128,
+              48
+            ]
+          },
+          "QK_rope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_r"
+            ],
+            "value": [
+              128,
+              128,
+              16
+            ]
+          },
+          "PV": {
+            "symbolic": [
+              "b_q",
+              "D_v",
+              "b_k"
+            ],
+            "value": [
+              128,
+              48,
+              128
+            ]
+          }
+        }
+      },
+      "structure_delta": {
+        "appear": [],
+        "disappear": [],
+        "mxu_tile_shape_changes": {}
+      }
+    },
+    {
+      "name": "bq64_bk128",
+      "role": "candidate",
+      "algorithm": "expanded",
+      "strategy": {
+        "name": "bq64_bk128",
+        "b_q": 64,
+        "b_k": 128,
+        "b_rq": null,
+        "b_rk": null,
+        "scheduled_lengths": null,
+        "rect_policy": "skip_future",
+        "subdivide": null,
+        "executed_extent_policy": "padded_to_tile",
+        "schedule": null,
+        "kv_buffers": 2,
+        "heads_per_program": 1,
+        "q_resident": null,
+        "projection_in_kv_loop": false,
+        "v_load": null,
+        "score_alias_exp": true,
+        "exp_alias_p_operand": false,
+        "both_qk_branches_live": false,
+        "materialize": {
+          "expanded_kv": false,
+          "q_nope": false
+        },
+        "layout": {},
+        "scratch_bytes": 0,
+        "vmem_budget_bytes": null,
+        "vreg_budget_bytes": 65536,
+        "overlap_model": "full_overlap_max",
+        "serial_stage_groups": null,
+        "notes": []
+      },
+      "values": {
+        "F_total[useful]": 596508672,
+        "F_total[executed_graph]": 1115684864,
+        "F_A_minus_F_E": 134479872,
+        "C_rect": 2621440,
+        "C_pad": 2621440,
+        "rect_waste": 520192,
+        "B[hbm_to_vmem]": 9306112,
+        "B[vmem_to_hbm]": 819200,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 32768,
+        "local[accumulator_A]": 12288,
+        "local[v_tile]": 12288,
+        "M_live[vreg:softmax]": 45824,
+        "M_live[vmem:softmax]": 20480,
+        "M_peak[all]": 90624,
+        "n_programs": 128,
+        "n_kv_block_visits": 320,
+        "V_lifetime_stages": 4,
+        "W_resource[exp]": 2641920,
+        "W_resource[reduce]": 5222400,
+        "b_k_max[vreg:binding_stage]": 136,
+        "T_LB[mxu]": 1.115684864e-05,
+        "T_LB[path:hbm_to_vmem]": 1.1632639999999999e-05,
+        "T_LB[combined]": 1.32096e-05,
+        "T_pred[node_interval]": [
+          2.2138355199999998e-05,
+          3.80767104e-05
+        ]
+      },
+      "statuses": {
+        "F_total[useful]": "bound",
+        "F_total[executed_graph]": "partial",
+        "F_A_minus_F_E": "bound",
+        "C_rect": "partial",
+        "C_pad": "partial",
+        "rect_waste": "partial",
+        "B[hbm_to_vmem]": "partial",
+        "B[vmem_to_hbm]": "partial",
+        "HBM_mat[K^n,V]": "not_applicable",
+        "local[score_X]": "bound",
+        "local[accumulator_A]": "bound",
+        "local[v_tile]": "partial",
+        "M_live[vreg:softmax]": "bound",
+        "M_live[vmem:softmax]": "partial",
+        "M_peak[all]": "partial",
+        "n_programs": "partial",
+        "n_kv_block_visits": "partial",
+        "V_lifetime_stages": "partial",
+        "W_resource[exp]": "partial",
+        "W_resource[reduce]": "partial",
+        "b_k_max[vreg:binding_stage]": "bound",
+        "T_LB[mxu]": "partial",
+        "T_LB[path:hbm_to_vmem]": "partial",
+        "T_LB[combined]": "partial",
+        "T_pred[node_interval]": "partial"
+      },
+      "delta_vs_baseline": {
+        "F_total[useful]": 0,
+        "F_total[executed_graph]": 251658240,
+        "F_A_minus_F_E": 0,
+        "C_rect": 0,
+        "C_pad": 0,
+        "rect_waste": 0,
+        "B[hbm_to_vmem]": 4259840,
+        "B[vmem_to_hbm]": 0,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": -32768,
+        "local[accumulator_A]": -12288,
+        "local[v_tile]": 0,
+        "M_live[vreg:softmax]": -45824,
+        "M_live[vmem:softmax]": -8192,
+        "M_peak[all]": -62464,
+        "n_programs": 64,
+        "n_kv_block_visits": 160,
+        "V_lifetime_stages": 0,
+        "W_resource[exp]": 0,
+        "W_resource[reduce]": 0,
+        "b_k_max[vreg:binding_stage]": 85,
+        "T_LB[mxu]": 2.5165823999999994e-06,
+        "T_LB[path:hbm_to_vmem]": 5.324799999999999e-06,
+        "T_LB[combined]": 0.0,
+        "T_pred[node_interval]": [
+          3.595117714285712e-06,
+          7.190235428571424e-06
+        ]
+      },
+      "legality": {
+        "mathematical": "legal",
+        "violations": [],
+        "backend_support": "unknown (no compilation evidence)",
+        "model_estimated_feasible_under_budget": {
+          "vreg": {
+            "verdict": true,
+            "status": "bound",
+            "stages_not_evaluated": [],
+            "stages_over_budget_independently_of_b_k": [],
+            "feasible_region_empty": false
+          }
+        },
+        "binding_stage_per_level": {
+          "vreg": {
+            "binding_stage": "pv",
+            "b_k_max": 136
+          }
+        }
+      },
+      "fingerprint": "f257b3dc6072875a",
+      "structure": {
+        "local_objects": [
+          "accumulator_A",
+          "exp_E",
+          "fixed_scratch",
+          "k_nope_tile",
+          "k_pe_tile",
+          "kv_latent_rank_tile",
+          "lse_tile",
+          "out_tile",
+          "p_operand",
+          "q_latent_window",
+          "q_nope_operand",
+          "q_pe_tile",
+          "q_proj_acc",
+          "row_alpha",
+          "row_state_l",
+          "row_state_m",
+          "score_X",
+          "v_tile",
+          "wk_rank_tile",
+          "wq_rank_tile",
+          "wv_rank_tile"
+        ],
+        "materializations": [],
+        "mxu_tile_shapes": {
+          "QK_nope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_n"
+            ],
+            "value": [
+              64,
+              128,
+              48
+            ]
+          },
+          "QK_rope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_r"
+            ],
+            "value": [
+              64,
+              128,
+              16
+            ]
+          },
+          "PV": {
+            "symbolic": [
+              "b_q",
+              "D_v",
+              "b_k"
+            ],
+            "value": [
+              64,
+              48,
+              128
+            ]
+          }
+        }
+      },
+      "structure_delta": {
+        "appear": [],
+        "disappear": [],
+        "mxu_tile_shape_changes": {
+          "QK_nope": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_n"
+              ],
+              "value": [
+                128,
+                128,
+                48
+              ]
+            },
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_n"
+              ],
+              "value": [
+                64,
+                128,
+                48
+              ]
+            }
+          },
+          "QK_rope": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_r"
+              ],
+              "value": [
+                128,
+                128,
+                16
+              ]
+            },
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_r"
+              ],
+              "value": [
+                64,
+                128,
+                16
+              ]
+            }
+          },
+          "PV": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "D_v",
+                "b_k"
+              ],
+              "value": [
+                128,
+                48,
+                128
+              ]
+            },
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "D_v",
+                "b_k"
+              ],
+              "value": [
+                64,
+                48,
+                128
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "bq128_bk64",
+      "role": "candidate",
+      "algorithm": "expanded",
+      "strategy": {
+        "name": "bq128_bk64",
+        "b_q": 128,
+        "b_k": 64,
+        "b_rq": null,
+        "b_rk": null,
+        "scheduled_lengths": null,
+        "rect_policy": "skip_future",
+        "subdivide": null,
+        "executed_extent_policy": "padded_to_tile",
+        "schedule": null,
+        "kv_buffers": 2,
+        "heads_per_program": 1,
+        "q_resident": null,
+        "projection_in_kv_loop": false,
+        "v_load": null,
+        "score_alias_exp": true,
+        "exp_alias_p_operand": false,
+        "both_qk_branches_live": false,
+        "materialize": {
+          "expanded_kv": false,
+          "q_nope": false
+        },
+        "layout": {},
+        "scratch_bytes": 0,
+        "vmem_budget_bytes": null,
+        "vreg_budget_bytes": 65536,
+        "overlap_model": "full_overlap_max",
+        "serial_stage_groups": null,
+        "notes": []
+      },
+      "values": {
+        "F_total[useful]": 596508672,
+        "F_total[executed_graph]": 864026624,
+        "F_A_minus_F_E": 134479872,
+        "C_rect": 2621440,
+        "C_pad": 2621440,
+        "rect_waste": 520192,
+        "B[hbm_to_vmem]": 5046272,
+        "B[vmem_to_hbm]": 819200,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": 32768,
+        "local[accumulator_A]": 24576,
+        "local[v_tile]": 6144,
+        "M_live[vreg:softmax]": 58880,
+        "M_live[vmem:softmax]": 22528,
+        "M_peak[all]": 97792,
+        "n_programs": 64,
+        "n_kv_block_visits": 320,
+        "V_lifetime_stages": 4,
+        "W_resource[exp]": 2662400,
+        "W_resource[reduce]": 5201920,
+        "b_k_max[vreg:binding_stage]": 51,
+        "T_LB[mxu]": 8.64026624e-06,
+        "T_LB[path:hbm_to_vmem]": 6.307839999999999e-06,
+        "T_LB[combined]": 1.3729792e-05,
+        "T_pred[node_interval]": [
+          1.8543237485714286e-05,
+          3.088647497142858e-05
+        ]
+      },
+      "statuses": {
+        "F_total[useful]": "bound",
+        "F_total[executed_graph]": "partial",
+        "F_A_minus_F_E": "bound",
+        "C_rect": "partial",
+        "C_pad": "partial",
+        "rect_waste": "partial",
+        "B[hbm_to_vmem]": "partial",
+        "B[vmem_to_hbm]": "partial",
+        "HBM_mat[K^n,V]": "not_applicable",
+        "local[score_X]": "bound",
+        "local[accumulator_A]": "bound",
+        "local[v_tile]": "partial",
+        "M_live[vreg:softmax]": "bound",
+        "M_live[vmem:softmax]": "partial",
+        "M_peak[all]": "partial",
+        "n_programs": "partial",
+        "n_kv_block_visits": "partial",
+        "V_lifetime_stages": "partial",
+        "W_resource[exp]": "partial",
+        "W_resource[reduce]": "partial",
+        "b_k_max[vreg:binding_stage]": "bound",
+        "T_LB[mxu]": "partial",
+        "T_LB[path:hbm_to_vmem]": "partial",
+        "T_LB[combined]": "partial",
+        "T_pred[node_interval]": "partial"
+      },
+      "delta_vs_baseline": {
+        "F_total[useful]": 0,
+        "F_total[executed_graph]": 0,
+        "F_A_minus_F_E": 0,
+        "C_rect": 0,
+        "C_pad": 0,
+        "rect_waste": 0,
+        "B[hbm_to_vmem]": 0,
+        "B[vmem_to_hbm]": 0,
+        "HBM_mat[K^n,V]": 0,
+        "local[score_X]": -32768,
+        "local[accumulator_A]": 0,
+        "local[v_tile]": -6144,
+        "M_live[vreg:softmax]": -32768,
+        "M_live[vmem:softmax]": -6144,
+        "M_peak[all]": -55296,
+        "n_programs": 0,
+        "n_kv_block_visits": 160,
+        "V_lifetime_stages": 0,
+        "W_resource[exp]": 20480,
+        "W_resource[reduce]": -20480,
+        "b_k_max[vreg:binding_stage]": 0,
+        "T_LB[mxu]": 0.0,
+        "T_LB[path:hbm_to_vmem]": 0.0,
+        "T_LB[combined]": 5.201920000000003e-07,
+        "T_pred[node_interval]": [
+          0.0,
+          0.0
+        ]
+      },
+      "legality": {
+        "mathematical": "legal",
+        "violations": [],
+        "backend_support": "unknown (no compilation evidence)",
+        "model_estimated_feasible_under_budget": {
+          "vreg": {
+            "verdict": false,
+            "status": "bound",
+            "stages_not_evaluated": [],
+            "stages_over_budget_independently_of_b_k": [],
+            "feasible_region_empty": false
+          }
+        },
+        "binding_stage_per_level": {
+          "vreg": {
+            "binding_stage": "pv",
+            "b_k_max": 51
+          }
+        }
+      },
+      "fingerprint": "f257b3dc6072875a",
+      "structure": {
+        "local_objects": [
+          "accumulator_A",
+          "exp_E",
+          "fixed_scratch",
+          "k_nope_tile",
+          "k_pe_tile",
+          "kv_latent_rank_tile",
+          "lse_tile",
+          "out_tile",
+          "p_operand",
+          "q_latent_window",
+          "q_nope_operand",
+          "q_pe_tile",
+          "q_proj_acc",
+          "row_alpha",
+          "row_state_l",
+          "row_state_m",
+          "score_X",
+          "v_tile",
+          "wk_rank_tile",
+          "wq_rank_tile",
+          "wv_rank_tile"
+        ],
+        "materializations": [],
+        "mxu_tile_shapes": {
+          "QK_nope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_n"
+            ],
+            "value": [
+              128,
+              64,
+              48
+            ]
+          },
+          "QK_rope": {
+            "symbolic": [
+              "b_q",
+              "b_k",
+              "D_r"
+            ],
+            "value": [
+              128,
+              64,
+              16
+            ]
+          },
+          "PV": {
+            "symbolic": [
+              "b_q",
+              "D_v",
+              "b_k"
+            ],
+            "value": [
+              128,
+              48,
+              64
+            ]
+          }
+        }
+      },
+      "structure_delta": {
+        "appear": [],
+        "disappear": [],
+        "mxu_tile_shape_changes": {
+          "QK_nope": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_n"
+              ],
+              "value": [
+                128,
+                128,
+                48
+              ]
+            },
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_n"
+              ],
+              "value": [
+                128,
+                64,
+                48
+              ]
+            }
+          },
+          "QK_rope": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_r"
+              ],
+              "value": [
+                128,
+                128,
+                16
+              ]
+            },
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "b_k",
+                "D_r"
+              ],
+              "value": [
+                128,
+                64,
+                16
+              ]
+            }
+          },
+          "PV": {
+            "baseline": {
+              "symbolic": [
+                "b_q",
+                "D_v",
+                "b_k"
+              ],
+              "value": [
+                128,
+                48,
+                128
+              ]
+            },
+            "candidate": {
+              "symbolic": [
+                "b_q",
+                "D_v",
+                "b_k"
+              ],
+              "value": [
+                128,
+                48,
+                64
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "useful_work_invariant": true,
+  "pareto_objectives": [
+    "B[hbm_to_vmem]",
+    "W_resource[reduce]",
+    "rect_waste",
+    "M_live[vreg:softmax]",
+    "M_live[vmem:softmax]",
+    "n_programs"
+  ],
+  "pareto_set": [
+    "bq64_bk128",
+    "bq128_bk64"
+  ],
+  "candidates_considered": [
+    "bq128_bk128",
+    "bq64_bk128",
+    "bq128_bk64"
+  ],
+  "excluded_candidates": [],
+  "model_infeasible_candidates": [
+    "bq128_bk128",
+    "bq128_bk64"
+  ],
+  "calibrated_ranking": [
+    [
+      "bq128_bk128",
+      [
+        1.8543237485714286e-05,
+        3.088647497142858e-05
+      ]
+    ],
+    [
+      "bq128_bk64",
+      [
+        1.8543237485714286e-05,
+        3.088647497142858e-05
+      ]
+    ],
+    [
+      "bq64_bk128",
+      [
+        2.2138355199999998e-05,
+        3.80767104e-05
+      ]
+    ]
+  ],
+  "ranking_note": "intervals overlap: ranking inconclusive; treat as hypotheses requiring measurement",
+  "selection_notes": [
+    "objectives whose values are scenario values (status partial) for some candidate, so the Pareto filter compares scenarios, not complete figures: B[hbm_to_vmem], M_live[vmem:softmax], W_resource[reduce], n_programs, rect_waste",
+    "kept but model-estimated infeasible under the declared budget at some level (model uncertainty, not a compilation verdict): bq128_bk128, bq128_bk64"
+  ],
+  "verdict": "intervals overlap: ranking inconclusive; treat as hypotheses requiring measurement"
+}
